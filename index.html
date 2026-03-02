@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manoj Sai Kothapati | AI-Driven Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="mesh mesh-one"></div>
+    <div class="mesh mesh-two"></div>
+
+    <header class="container nav">
+      <a class="logo" href="#home">MSK</a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#ai-lab">AI Lab</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-ghost" href="https://github.com/manojk-sai" target="_blank" rel="noreferrer">GitHub</a>
+    </header>
+
+    <main id="home" class="container">
+      <section class="hero">
+        <p class="eyebrow">Accomplished Software Developer • 5+ Years • 99.9% Uptime Focus</p>
+        <h1>Manoj Sai Kothapati</h1>
+        <p class="subtitle">
+          Full-stack Java developer building cloud-native, event-driven enterprise platforms across financial services,
+          healthcare, retail, and asset management. I blend modern engineering with AI-powered delivery for faster, safer releases.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">Hire Me</a>
+          <a class="btn btn-secondary" href="#experience">View Experience</a>
+        </div>
+        <div class="quick-info">
+          <span>📞 972-891-9342</span>
+          <span>✉️ manojsaikothapati@gmail.com</span>
+          <span>📍 DFW, TX (Open to Remote)</span>
+        </div>
+      </section>
+
+      <section id="about" class="section two-col">
+        <article>
+          <h2>Summary of Qualifications</h2>
+          <p>
+            Technical specialist in Java/J2EE ecosystem and modern frontend frameworks with strong expertise in Spring Boot microservices,
+            React.js, Angular, and API-first architecture.
+          </p>
+          <p>
+            Experienced in AWS, Azure, Docker, Kubernetes, CI/CD, and observability platforms (Splunk, AppDynamics, Grafana, OpenObserver),
+            driving scalable systems and robust production support from L1 to L3.
+          </p>
+        </article>
+        <aside class="panel metrics" id="metrics-grid"></aside>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="section-head">
+          <h2>Core Skills</h2>
+          <p>Hands-on expertise across backend, frontend, cloud, data, and support engineering.</p>
+        </div>
+        <div class="chip-wrap" id="skills-list"></div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section-head">
+          <h2>Professional Experience</h2>
+          <p>Recent roles and measurable outcomes.</p>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-head">
+          <h2>Featured GitHub Projects</h2>
+          <p>Click any project card to view a simple data flow diagram and a 5-sentence project script.</p>
+        </div>
+        <div class="projects-grid" id="projects-grid"></div>
+      </section>
+  <section id="ai-lab" class="section ai-lab">
+        <div class="section-head">
+          <h2>Assistant</h2>
+          <p>Explore my profile through interactive insights.</p>
+        </div>
+
+        <div class="ai-grid">
+          <article class="panel">
+            <h3>Ask About My Profile</h3>
+            <p class="muted">Click any prompt to generate a targeted summary.</p>
+            <div class="prompt-buttons" id="prompt-buttons"></div>
+            <div class="response" id="ai-response">
+              Select a prompt to view a tailored response.
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Role Fit Analyzer</h3>
+            <p class="muted">Paste a job title and check alignment with my skill coverage.</p>
+            <div class="analyzer">
+              <input id="role-input" type="text" placeholder="e.g., Senior Java Architect" />
+              <button class="btn btn-primary" id="analyze-btn">Analyze Fit</button>
+            </div>
+            <div class="response" id="fit-response">No role analyzed yet.</div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <h2>Let’s build reliable, scalable systems together.</h2>
+        <p>Available for Java/Spring Boot, cloud-native, and full-stack opportunities.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="mailto:manojsaikothapati@gmail.com">Email Manoj</a>
+          <a class="btn btn-secondary" href="https://github.com/manojk-sai" target="_blank" rel="noreferrer">GitHub Profile</a>
+        </div>
+
+        <article class="panel calendly-panel">
+          <h3>Schedule a Quick Recruiter Call</h3>
+          <p class="muted">Book a 30-minute call directly on my calendar.</p>
+          <iframe
+            title="Schedule a 30 minute call with Manoj"
+            src="https://calendly.com/manojsaikothapati/30min"
+            loading="lazy"
+            class="calendly-frame"
+          ></iframe>
+        </article>
+      </section>
+    </main>
+
+    <div class="modal" id="project-modal" aria-hidden="true">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <article class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close project details">×</button>
+        <h3 id="modal-title"></h3>
+        <p class="muted"><a id="modal-link" target="_blank" rel="noreferrer">View GitHub Repository</a></p>
+        <pre id="modal-diagram" class="diagram"></pre>
+        <ol id="modal-script" class="modal-script"></ol>
+      </article>
+    </div>
+
+    <button
+      class="chat-launcher"
+      id="chat-launcher"
+      type="button"
+      aria-label="Open portfolio chat"
+      aria-expanded="false"
+      aria-controls="chat-widget"
+    >💬</button>
+
+    <aside class="chat-widget" id="chat-widget" aria-hidden="true">
+      <div class="chat-widget-head">
+        <h3>Manoj's bot</h3>
+        <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button>
+      </div>
+      <div class="chat-window" id="chat-window" aria-live="polite"></div>
+      <p class="chat-hint">Choose a question to continue:</p>
+      <div class="chat-suggestions" id="chat-suggestions"></div>
+    </aside>
+
+    <footer class="container footer">
+      <p>© <span id="year"></span> Manoj Sai Kothapati • Built as a professional portfolio.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
