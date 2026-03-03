@@ -396,63 +396,6 @@ h1 {
   }
 }
 
-.chatbot-panel {
-  display: flex;
-  flex-direction: column;
-  min-height: 420px;
-}
-
-.chat-window {
-  flex: 1;
-  min-height: 260px;
-  max-height: 320px;
-  overflow-y: auto;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.22);
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.chat-message {
-  max-width: 85%;
-  border-radius: 10px;
-  padding: 0.6rem 0.75rem;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-.chat-message.user {
-  align-self: flex-end;
-  background: linear-gradient(120deg, rgba(114, 228, 255, 0.2), rgba(111, 140, 255, 0.24));
-  border: 1px solid rgba(114, 228, 255, 0.45);
-}
-
-.chat-message.bot {
-  align-self: flex-start;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  color: var(--muted);
-}
-
-.chat-form {
-  margin-top: 0.8rem;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.chat-form input {
-  flex: 1;
-  min-width: 220px;
-  background: #0d1428;
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 0.7rem;
-}
 .chat-launcher {
   position: fixed;
   right: 1.25rem;
