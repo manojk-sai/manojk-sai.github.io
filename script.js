@@ -167,7 +167,11 @@ function setupChatbot() {
   const closeButton = document.getElementById("chat-close");
   const chatWindow = document.getElementById("chat-window");
   const suggestions = document.getElementById("chat-suggestions");
-
+  
+if (!launcher || !widget || !closeButton || !chatWindow || !suggestions) {
+    return;
+  }
+  
   const quickQuestions = [
     "What skills does Manoj have?",
     "Tell me about recent experience",
@@ -248,6 +252,10 @@ function setupChatbot() {
 
 function renderMetrics() {
   const grid = document.getElementById("metrics-grid");
+  if (!grid) {
+    return;
+  }
+  
   metrics.forEach((m) => {
     const card = document.createElement("div");
     card.className = "metric";
@@ -258,6 +266,10 @@ function renderMetrics() {
 
 function renderSkills() {
   const container = document.getElementById("skills-list");
+  if (!container) {
+    return;
+  }
+  
   skillChips.forEach((skill) => {
     const chip = document.createElement("span");
     chip.className = "chip";
@@ -268,6 +280,10 @@ function renderSkills() {
 
 function renderTimeline() {
   const timeline = document.getElementById("timeline");
+  if (!timeline) {
+    return;
+  }
+  
   experiences.forEach((exp) => {
     const item = document.createElement("article");
     item.className = "timeline-item";
@@ -290,6 +306,10 @@ function setupProjectsModal() {
   const diagram = document.getElementById("modal-diagram");
   const scriptList = document.getElementById("modal-script");
 
+  if (!container || !modal || !modalBackdrop || !modalClose || !title || !repoLink || !diagram || !scriptList) {
+    return;
+  }
+  
   const closeModal = () => {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
@@ -330,6 +350,10 @@ function setupPrompts() {
   const container = document.getElementById("prompt-buttons");
   const response = document.getElementById("ai-response");
 
+  if (!container || !response) {
+    return;
+  }
+
   Object.entries(prompts).forEach(([question, answer]) => {
     const btn = document.createElement("button");
     btn.className = "prompt-btn";
@@ -347,6 +371,10 @@ function setupRoleAnalyzer() {
   const button = document.getElementById("analyze-btn");
   const output = document.getElementById("fit-response");
 
+  if (!input || !button || !output) {
+    return;
+  }
+  
   button.addEventListener("click", () => {
     const role = input.value.trim();
     if (!role) {
@@ -379,4 +407,8 @@ setupProjectsModal();
 setupPrompts();
 setupRoleAnalyzer();
 setupChatbot();
-document.getElementById("year").textContent = new Date().getFullYear();
+
+const yearElement = document.getElementById("year");
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
