@@ -14,8 +14,8 @@ const skillCategories = [
     icon: "⚙️",
     color: "#72e4ff",
     skills: [
-      { name: "Java 8/11/17", level: 95 },
-      { name: "Spring Boot", level: 93 },
+      { name: "Java 8/11/17", level: 100 },
+      { name: "Spring Boot", level: 95 },
       { name: "Spring Security", level: 88 },
       { name: "Spring Batch", level: 82 },
       { name: "REST APIs", level: 95 },
