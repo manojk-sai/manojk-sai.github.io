@@ -6,10 +6,7 @@
     <title>Manoj Sai Kothapati | AI-Driven Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -68,9 +65,9 @@
       <section id="skills" class="section">
         <div class="section-head">
           <h2>Core Skills</h2>
-          <p>Hands-on expertise across backend, frontend, cloud, data, and support engineering.</p>
+          <p>Hands-on expertise across backend, frontend, cloud, data, and observability. Filter by category to explore depth.</p>
         </div>
-        <div class="chip-wrap" id="skills-list"></div>
+        <div id="skills-list"></div>
       </section>
 
       <section id="experience" class="section">
@@ -84,47 +81,33 @@
       <section id="projects" class="section">
         <div class="section-head">
           <h2>Featured GitHub Projects</h2>
-          <p>Click any project card to view a simple data flow diagram and a 5-sentence project script.</p>
+          <p>Click any project card to view architecture diagram and project narrative.</p>
         </div>
         <div class="projects-grid" id="projects-grid"></div>
       </section>
-  <section id="ai-lab" class="section ai-lab">
+
+      <section id="ai-lab" class="section ai-lab">
         <div class="section-head">
           <h2>Assistant</h2>
           <p>Explore my profile through interactive insights.</p>
         </div>
-
         <div class="ai-grid">
           <article class="panel">
             <h3>Ask About My Profile</h3>
             <p class="muted">Click any prompt to generate a targeted summary.</p>
             <div class="prompt-buttons" id="prompt-buttons"></div>
-            <div class="response" id="ai-response">
-              Select a prompt to view a tailored response.
-            </div>
+            <div class="response" id="ai-response">Select a prompt to view a tailored response.</div>
           </article>
-<!--
-          <article class="panel">
-            <h3>Role Fit Analyzer</h3>
-            <p class="muted">Paste a job title and check alignment with my skill coverage.</p>
-            <div class="analyzer">
-              <input id="role-input" type="text" placeholder="e.g., Senior Java Architect" />
-              <button class="btn btn-primary" id="analyze-btn">Analyze Fit</button>
-            </div>
-            <div class="response" id="fit-response">No role analyzed yet.</div>
-          </article>
--->
         </div>
       </section>
 
       <section id="contact" class="section contact">
-        <h2>Let’s build reliable, scalable systems together.</h2>
+        <h2>Let's build reliable, scalable systems together.</h2>
         <p>Available for Java/Spring Boot, cloud-native, and full-stack opportunities.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="mailto:manojsaikothapati@gmail.com">Email Manoj</a>
           <a class="btn btn-secondary" href="https://github.com/manojk-sai" target="_blank" rel="noreferrer">GitHub Profile</a>
         </div>
-
         <article class="panel calendly-panel">
           <h3>Schedule a Quick Recruiter Call</h3>
           <p class="muted">Book a 30-minute call directly on my calendar.</p>
@@ -143,20 +126,13 @@
       <article class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button id="modal-close" class="modal-close" type="button" aria-label="Close project details">×</button>
         <h3 id="modal-title"></h3>
-        <p class="muted"><a id="modal-link" target="_blank" rel="noreferrer">View GitHub Repository</a></p>
+        <p class="muted"><a id="modal-link" target="_blank" rel="noreferrer"></a></p>
         <pre id="modal-diagram" class="diagram"></pre>
         <ol id="modal-script" class="modal-script"></ol>
       </article>
     </div>
 
-    <button
-      class="chat-launcher"
-      id="chat-launcher"
-      type="button"
-      aria-label="Open portfolio chat"
-      aria-expanded="false"
-      aria-controls="chat-widget"
-    >💬</button>
+    <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open portfolio chat" aria-expanded="false" aria-controls="chat-widget">💬</button>
 
     <aside class="chat-widget" id="chat-widget" aria-hidden="true">
       <div class="chat-widget-head">
