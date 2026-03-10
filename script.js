@@ -488,7 +488,6 @@ function setupChatbot() {
   const quickQuestions = [
     "What skills does Manoj have?",
     "Tell me about recent experience",
-    "Which projects should I review?",
     "How can I contact Manoj?",
     "What industries has Manoj worked in?",
     "How does Manoj use AI tools?",
