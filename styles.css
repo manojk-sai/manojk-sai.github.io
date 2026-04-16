@@ -245,6 +245,12 @@ h1 {
 
 /* ─── PROJECTS ───────────────────────────────────────────────── */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+/* Featured card spans full width on larger screens */
+.project-card--featured {
+  grid-column: 1 / -1;
+}
+
 .project-card {
   border: 1px solid var(--line);
   background: var(--surface);
@@ -262,6 +268,48 @@ h1 {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--card-accent, var(--accent));
 }
+
+/* Featured card layout — horizontal on wide screens */
+.project-card--featured .project-card-top {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .project-card--featured {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: start;
+  }
+  .project-card--featured .project-card-top {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  .project-card--featured .proj-tech-row {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .project-card--featured .project-card-arrow {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    display: flex;
+    align-items: center;
+    border-top: none;
+    border-left: 1px solid var(--line);
+    padding: 1.5rem 1.4rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.05em;
+    height: 100%;
+    transition: padding var(--transition), border-color var(--transition);
+  }
+  .project-card--featured:hover .project-card-arrow {
+    padding-top: 1.8rem;
+    border-color: var(--card-accent, var(--accent));
+  }
+}
+
 .project-card-top { padding: 1.2rem 1.2rem 0.8rem; position: relative; }
 .project-card-glow {
   position: absolute; inset: 0;
@@ -287,6 +335,47 @@ h1 {
   transition: padding var(--transition);
 }
 .project-card:hover .project-card-arrow { padding-left: 1.5rem; }
+
+/* ─── PROJECT BADGE ──────────────────────────────────────────── */
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(120deg,
+    rgba(245, 158, 11, 0.18),
+    rgba(251, 191, 36, 0.12));
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #f59e0b;
+  position: relative;
+  z-index: 1;
+}
+.project-badge::before {
+  content: '✦';
+  font-size: 0.6rem;
+}
+
+/* Featured card subtle shimmer on the top border */
+.project-card--featured {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.04) 0%,
+    var(--surface) 40%
+  );
+}
+.project-card--featured:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.45),
+              0 0 0 1px #f59e0b,
+              0 0 40px rgba(245, 158, 11, 0.08);
+}
 
 /* ─── AI LAB ─────────────────────────────────────────────────── */
 .ai-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
@@ -435,6 +524,7 @@ h1 {
 .project-card:nth-child(2) { transition-delay: 0.08s; }
 .project-card:nth-child(3) { transition-delay: 0.16s; }
 .project-card:nth-child(4) { transition-delay: 0.24s; }
+.project-card:nth-child(5) { transition-delay: 0.32s; }
 .timeline-item:nth-child(2) { transition-delay: 0.07s; }
 .timeline-item:nth-child(3) { transition-delay: 0.14s; }
 .timeline-item:nth-child(4) { transition-delay: 0.21s; }
@@ -446,6 +536,10 @@ h1 {
   .nav ul { gap: 0; }
   .calendly-frame { height: 520px; }
   .timeline::before { display: none; }
+  .project-card--featured {
+    grid-column: auto;
+    display: flex;
+  }
 }
 @media (max-width: 600px) {
   .nav ul { display: none; }
