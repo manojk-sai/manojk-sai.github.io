@@ -14,7 +14,7 @@ const skillCategories = [
     icon: "⚙️",
     color: "#72e4ff",
     skills: [
-      { name: "Java 8/11/17", level: 100 },
+      { name: "Java 8/11/17/21", level: 100 },
       { name: "Spring Boot", level: 95 },
       { name: "Spring Security", level: 88 },
       { name: "Spring Batch", level: 82 },
@@ -56,7 +56,7 @@ const skillCategories = [
     icon: "🗄️",
     color: "#fbbf24",
     skills: [
-      { name: "MongoDB", level: 82 },
+      { name: "MongoDB", level: 85 },
       { name: "Cassandra", level: 75 },
       { name: "Oracle", level: 80 },
       { name: "PostgreSQL", level: 84 },
@@ -138,6 +138,40 @@ const experiences = [
 
 const projects = [
   {
+    name: "Saha Yatra",
+    url: "https://github.com/manojk-sai/SahaYatra",
+    tagline: "Full-stack collaborative travel planning platform — real-time voting, event-driven notifications, and day-grouped itinerary export.",
+    tech: ["Java 21", "Spring Boot 3", "React 18", "MongoDB", "JWT", "Spring AOP", "Async Events"],
+    color: "#f59e0b",
+    badge: "Full-Stack",
+    diagram: `React 18 SPA (Vite)
+     │  JWT Auth  │  Optimistic UI  │  Day-Grouped Itinerary
+     ▼
+Spring Boot 3 REST API  ──  Spring Security (JWT Filter)
+     │
+     ├── TripController  ──  TripService  ──  MongoDB (trips collection)
+     │       Stops[] embedded · TripMembership[] · Invite token flow
+     │
+     ├── VotingController  ──  VotingService
+     │       Strategy Pattern: MAJORITY | UNANIMOUS | ORGANIZER
+     │       MongoTemplate $push · Atomic status update
+     │
+     ├── Spring AOP  ──  @RequiresTripRole
+     │       Role hierarchy: VIEWER < CONTRIBUTOR < ORGANIZER
+     │
+     └── ApplicationEvent Bus  ──  @Async NotificationListener
+             StopProposedEvent → VoteResolvedEvent
+             MemberJoinedEvent → TripStatusChangedEvent`,
+    script: [
+      "Saha Yatra is a production-ready full-stack platform for collaborative travel planning, built end-to-end with Java 21/Spring Boot 3 on the backend and React 18 on the frontend.",
+      "The backend uses MongoDB document embedding — stops and votes live inside trip documents for single-fetch reads with no joins — and Spring Security with JWT for stateless auth.",
+      "A Strategy pattern powers three voting modes (Majority, Unanimous, Organizer override), each resolving stop status atomically via MongoTemplate without race conditions.",
+      "Cross-cutting role enforcement is handled by a custom @RequiresTripRole AOP annotation, automatically verifying VIEWER/CONTRIBUTOR/ORGANIZER hierarchy before any service method executes.",
+      "An ApplicationEvent bus drives async notifications — adding a stop, casting a vote, accepting an invite, or advancing trip status each fires a typed event handled off the HTTP thread, so API responses are never blocked.",
+      "The React SPA features optimistic UI for voting and notifications, a day-grouped itinerary tab with cost breakdowns, and a real-time unread badge — all wired to a single api/client.js for clean separation of concerns.",
+    ],
+  },
+  {
     name: "Finorder Platform",
     url: "https://github.com/manojk-sai/finorder-platform",
     tagline: "Financial order workflow platform with secure APIs and event-driven processing.",
@@ -203,7 +237,7 @@ const prompts = {
   "Summarize Manoj in 30 seconds":
     "Manoj is a 5+ year full-stack Java engineer with deep Spring Boot and cloud-native expertise. He builds high-availability systems, leads production support, and uses AI tools to ship features faster without compromising reliability.",
   "Why is Manoj a strong backend candidate?":
-    "He has strong command over Java 8/11/17, Spring ecosystem, event-driven architecture with Kafka, secure APIs with JWT/OAuth2, and proven experience scaling microservices in AWS/Azure with 99.9% uptime responsibility.",
+    "He has strong command over Java 8/11/17/21, Spring ecosystem, event-driven architecture with Kafka, secure APIs with JWT/OAuth2, and proven experience scaling microservices in AWS/Azure with 99.9% uptime responsibility. His Saha Yatra project further demonstrates mastery of MongoDB document modeling, Spring AOP, async event-driven patterns, and the Strategy design pattern — all production-grade skills.",
   "What business outcomes has he delivered?":
     "He improved development velocity by 40%, reduced MTTR by 45%, reduced deployment time by 50%, and improved response times by 25% through JVM/query optimization and observability-led tuning.",
 };
@@ -215,11 +249,15 @@ const chatbotReplies = [
   },
   {
     match: ["skill", "stack", "technology", "tech"],
-    response: "Manoj specializes in Java 8/11/17, Spring Boot, Kafka, secure API development, and cloud-native delivery with AWS/Azure, Docker, and Kubernetes.",
+    response: "Manoj specializes in Java 8/11/17/21, Spring Boot, Kafka, secure API development, and cloud-native delivery with AWS/Azure, Docker, and Kubernetes. He also has strong full-stack skills in React 18 and MongoDB.",
+  },
+  {
+    match: ["saha", "yatra", "travel", "collaborative"],
+    response: "Saha Yatra is Manoj's flagship full-stack project — a collaborative travel planning platform built with Java 21/Spring Boot 3 (backend) and React 18 (frontend). It features JWT auth, MongoDB document modeling, a Strategy pattern voting system, Spring AOP role guards, async Spring Events for notifications, and a live itinerary with day-grouped cost breakdowns.",
   },
   {
     match: ["project", "github", "portfolio"],
-    response: "Featured projects include Finorder Platform, Risk Factor, QuizPortfolioApp, and MatcherIQ. Open the project cards above to view architecture flow and implementation story.",
+    response: "Featured projects include Saha Yatra (full-stack collaborative travel app), Finorder Platform, Risk Factor, QuizPortfolioApp, and MatcherIQ. Open any project card to view the architecture flow and implementation narrative.",
   },
   {
     match: ["experience", "work", "role"],
@@ -244,6 +282,14 @@ const chatbotReplies = [
   {
     match: ["contact", "email", "hire", "available"],
     response: "You can reach Manoj at manojsaikothapati@gmail.com, call 972-891-9342, or use the scheduling calendar in the contact section.",
+  },
+  {
+    match: ["mongodb", "nosql", "database"],
+    response: "Manoj has strong MongoDB expertise demonstrated through the Saha Yatra project — including document embedding strategies, MongoTemplate for atomic operations, and aggregation pipelines for day-grouped itinerary queries.",
+  },
+  {
+    match: ["pattern", "design", "architecture", "aop", "event"],
+    response: "Manoj applies production-grade design patterns: the Strategy pattern for pluggable voting logic in Saha Yatra, Spring AOP for cross-cutting role enforcement, and event-driven async notifications via Spring ApplicationEvents to keep API responses non-blocking.",
   },
 ];
 
@@ -430,10 +476,19 @@ function setupProjectsModal() {
     card.type = "button";
     card.className = "project-card";
     card.style.setProperty("--card-accent", project.color);
+
+    // Featured badge for Saha Yatra
+    const badgeHtml = project.badge
+      ? `<span class="project-badge">${project.badge}</span>`
+      : "";
+    const featuredClass = project.badge ? " project-card--featured" : "";
+    card.className = "project-card" + featuredClass;
+
     const techHtml = project.tech.map((t) => `<span class="proj-tech">${t}</span>`).join("");
     card.innerHTML = `
       <div class="project-card-top">
         <div class="project-card-glow"></div>
+        ${badgeHtml}
         <h3>${project.name}</h3>
         <p>${project.tagline}</p>
       </div>
@@ -487,6 +542,7 @@ function setupChatbot() {
 
   const quickQuestions = [
     "What skills does Manoj have?",
+    "Tell me about Saha Yatra",
     "Tell me about recent experience",
     "How can I contact Manoj?",
     "What industries has Manoj worked in?",
