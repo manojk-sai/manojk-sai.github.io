@@ -233,6 +233,107 @@ Spring Boot 3 REST API  ──  Spring Security (JWT Filter)
   },
 ];
 
+
+const caseStudies = [
+  {
+    name: "Saha Yatra",
+    year: "2025",
+    type: "Side Project",
+    role: "Full-Stack Developer",
+    objective: "Build a collaborative trip planning product that keeps group decisions transparent and fast.",
+    process: "Started with API and domain modeling, then layered JWT security, role-based permissions, and strategy-driven voting. Iterated UI based on usability tests for itinerary clarity and voting speed.",
+    outcome: "Delivered a production-style platform that showcases scalable Spring architecture, clean React UX, and async event-driven notifications.",
+    features: ["Role-based access model", "Strategy-based voting", "Day-grouped itinerary", "Async notification events"]
+  },
+  {
+    name: "Finorder Platform",
+    year: "2024",
+    type: "Enterprise Simulation",
+    role: "Backend + Architecture",
+    objective: "Model secure financial order processing from intake through portfolio updates.",
+    process: "Designed service boundaries first, then introduced validation, risk checks, and Kafka-based downstream propagation.",
+    outcome: "Created a resilient order workflow blueprint with clear auditability and horizontal scalability.",
+    features: ["Secure API gateway flow", "Risk validation step", "Kafka event bus", "Reporting-ready data trail"]
+  },
+  {
+    name: "Risk Factor",
+    year: "2024",
+    type: "Analytics Product",
+    role: "Backend Developer",
+    objective: "Enable faster portfolio decisions with explainable risk scoring.",
+    process: "Built ingestion + scoring pipeline, then exposed normalized risk outputs to dashboards and alerts.",
+    outcome: "Improved decision turnaround by providing near real-time scoring visibility.",
+    features: ["Factor-weighted scoring", "REST risk API", "Dashboard integration", "Alert pipeline"]
+  },
+  {
+    name: "QuizPortfolioApp",
+    year: "2023",
+    type: "Side Project",
+    role: "Full-Stack Developer",
+    objective: "Create an engaging assessment app with actionable learner feedback.",
+    process: "Implemented quiz delivery, answer evaluation, result storage, and analytics loops in short iterations.",
+    outcome: "Delivered a compact full-stack app demonstrating product thinking and measurable learning loops.",
+    features: ["Quiz engine", "Evaluation logic", "Progress analytics", "Feedback recommendations"]
+  },
+  {
+    name: "MatcherIQ",
+    year: "2023",
+    type: "Recommendation Engine",
+    role: "Backend + ML Integration",
+    objective: "Improve profile-to-opportunity matching quality.",
+    process: "Defined ranking signals, built similarity pipeline, and added feedback loop for model tuning.",
+    outcome: "Produced a reusable matching architecture for recruitment and recommendation use cases.",
+    features: ["Feature extraction", "Similarity ranking", "Recommendation API", "Learning feedback loop"]
+  }
+];
+
+function svgCard(title, subtitle, tone) {
+  return `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='900' height='520'>
+  <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='${tone}'/><stop offset='100%' stop-color='%23081126'/></linearGradient></defs>
+  <rect width='100%' height='100%' fill='url(%23g)'/>
+  <rect x='45' y='50' rx='16' width='810' height='420' fill='%23ffffff' fill-opacity='0.93'/>
+  <text x='80' y='120' font-size='42' font-family='Inter,Arial' fill='%23081126' font-weight='700'>${title}</text>
+  <text x='80' y='165' font-size='24' font-family='Inter,Arial' fill='%234b5563'>${subtitle}</text>
+  <rect x='80' y='210' rx='10' width='300' height='36' fill='%23e2e8f0'/><rect x='80' y='265' rx='10' width='640' height='36' fill='%23e2e8f0'/>
+  <rect x='80' y='320' rx='10' width='560' height='36' fill='%23e2e8f0'/><rect x='80' y='375' rx='10' width='420' height='36' fill='%23e2e8f0'/>
+  </svg>`)}`;
+}
+
+function renderCaseStudies() {
+  const container = document.getElementById('case-studies-list');
+  if (!container) return;
+  caseStudies.forEach((study, idx) => {
+    const project = projects.find((p) => p.name === study.name);
+    const article = document.createElement('article');
+    article.className = 'case-study';
+    article.id = `case-${study.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+    const tone = project?.color || '#72e4ff';
+    const uiSrc = svgCard(`${study.name} UI Preview`, 'High-fidelity layout mock', tone);
+    const flowSrc = svgCard(`${study.name} Flowchart`, 'System and decision flow', '#1f2f66');
+    article.innerHTML = `
+      <h3>${study.name}</h3>
+      <div class='case-meta'>
+        <div class='panel'><strong>Year</strong><br>${study.year}</div>
+        <div class='panel'><strong>Type of Project</strong><br>${study.type}</div>
+        <div class='panel'><strong>My Role</strong><br>${study.role}</div>
+      </div>
+      <div class='case-grid'>
+        <div>
+          <img class='case-image' alt='${study.name} user interface preview' src='${uiSrc}' />
+          <img class='case-image' alt='${study.name} flowchart' src='${flowSrc}' style='margin-top:.7rem' />
+        </div>
+        <div class='case-block'>
+          <h4>Objective</h4><p>${study.objective}</p>
+          <h4>Process</h4><p>${study.process}</p>
+          <h4>Outcome</h4><p>${study.outcome}</p>
+          <h4>Standout Features</h4>
+          <ul class='feature-list'>${study.features.map((f)=>`<li>${f}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+    container.appendChild(article);
+  });
+}
+
 const prompts = {
   "Summarize Manoj in 30 seconds":
     "Manoj is a 5+ year full-stack Java engineer with deep Spring Boot and cloud-native expertise. He builds high-availability systems, leads production support, and uses AI tools to ship features faster without compromising reliability.",
@@ -493,8 +594,8 @@ function setupProjectsModal() {
         <p>${project.tagline}</p>
       </div>
       <div class="proj-tech-row">${techHtml}</div>
-      <div class="project-card-arrow">View Architecture →</div>`;
-    card.addEventListener("click", () => openModal(project));
+      <div class="project-card-arrow">View Architecture & Case Study →</div>`;
+    card.addEventListener("click", () => { openModal(project); const el=document.getElementById(`case-${project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`); if (el) el.scrollIntoView({behavior:"smooth", block:"start"}); });
     container.appendChild(card);
   });
 
@@ -634,6 +735,7 @@ renderMetrics();
 renderSkills();
 renderTimeline();
 setupProjectsModal();
+renderCaseStudies();
 setupPrompts();
 setupChatbot();
 setupScrollReveal();
