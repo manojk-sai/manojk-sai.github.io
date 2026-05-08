@@ -545,3 +545,13 @@ h1 {
   .nav ul { display: none; }
   .skill-tabs { gap: 0.35rem; }
 }
+
+/* ─── MODAL CASE PREVIEW IMAGE ───────────────────────────── */
+.case-image {
+  display: block;
+  width: 100%;
+  margin-top: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
