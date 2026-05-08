@@ -546,24 +546,12 @@ h1 {
   .skill-tabs { gap: 0.35rem; }
 }
 
-/* ─── CASE STUDIES ───────────────────────────────────────────── */
-.case-studies-list { display: grid; gap: 1rem; }
-.case-study {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 1.2rem;
-}
-.case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.6rem; margin: 0.8rem 0 1rem; }
-.case-meta .panel { padding: 0.7rem; }
-.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+/* ─── MODAL CASE PREVIEW IMAGE ───────────────────────────── */
 .case-image {
+  display: block;
+  width: 100%;
+  margin-top: 0.55rem;
   border: 1px solid var(--line);
   border-radius: 10px;
-  width: 100%;
   background: #fff;
 }
-.case-block h4 { margin: 0 0 0.35rem; color: var(--accent); }
-.case-block p { margin: 0 0 0.8rem; color: var(--muted); line-height: 1.6; }
-.feature-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
-@media (max-width: 850px) { .case-grid { grid-template-columns: 1fr; } }

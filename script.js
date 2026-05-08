@@ -299,41 +299,6 @@ function svgCard(title, subtitle, tone) {
   </svg>`)}`;
 }
 
-function renderCaseStudies() {
-  const container = document.getElementById('case-studies-list');
-  if (!container) return;
-  caseStudies.forEach((study, idx) => {
-    const project = projects.find((p) => p.name === study.name);
-    const article = document.createElement('article');
-    article.className = 'case-study';
-    article.id = `case-${study.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    const tone = project?.color || '#72e4ff';
-    const uiSrc = svgCard(`${study.name} UI Preview`, 'High-fidelity layout mock', tone);
-    const flowSrc = svgCard(`${study.name} Flowchart`, 'System and decision flow', '#1f2f66');
-    article.innerHTML = `
-      <h3>${study.name}</h3>
-      <div class='case-meta'>
-        <div class='panel'><strong>Year</strong><br>${study.year}</div>
-        <div class='panel'><strong>Type of Project</strong><br>${study.type}</div>
-        <div class='panel'><strong>My Role</strong><br>${study.role}</div>
-      </div>
-      <div class='case-grid'>
-        <div>
-          <img class='case-image' alt='${study.name} user interface preview' src='${uiSrc}' />
-          <img class='case-image' alt='${study.name} flowchart' src='${flowSrc}' style='margin-top:.7rem' />
-        </div>
-        <div class='case-block'>
-          <h4>Objective</h4><p>${study.objective}</p>
-          <h4>Process</h4><p>${study.process}</p>
-          <h4>Outcome</h4><p>${study.outcome}</p>
-          <h4>Standout Features</h4>
-          <ul class='feature-list'>${study.features.map((f)=>`<li>${f}</li>`).join('')}</ul>
-        </div>
-      </div>`;
-    container.appendChild(article);
-  });
-}
-
 const prompts = {
   "Summarize Manoj in 30 seconds":
     "Manoj is a 5+ year full-stack Java engineer with deep Spring Boot and cloud-native expertise. He builds high-availability systems, leads production support, and uses AI tools to ship features faster without compromising reliability.",
@@ -564,8 +529,17 @@ function setupProjectsModal() {
     title.textContent = project.name;
     repoLink.href = project.url;
     repoLink.textContent = "View GitHub Repository ↗";
+    const study = caseStudies.find((item) => item.name === project.name);
     diagram.textContent = project.diagram;
-    scriptList.innerHTML = project.script.map((line, i) => `<li><span class="step-num">${i + 1}</span>${line}</li>`).join("");
+    scriptList.innerHTML = study
+      ? `<li><span class="step-num">1</span><div><strong>Year:</strong> ${study.year} • <strong>Type:</strong> ${study.type} • <strong>Role:</strong> ${study.role}</div></li>
+         <li><span class="step-num">2</span><div><strong>Objective:</strong> ${study.objective}</div></li>
+         <li><span class="step-num">3</span><div><strong>Process:</strong> ${study.process}</div></li>
+         <li><span class="step-num">4</span><div><strong>Outcome:</strong> ${study.outcome}</div></li>
+         <li><span class="step-num">5</span><div><strong>Standout Features:</strong><ul>${study.features.map((f)=>`<li>${f}</li>`).join("")}</ul></div></li>
+         <li><span class="step-num">6</span><div><strong>UI Preview</strong><img class="case-image" alt="${study.name} user interface preview" src="${svgCard(`${study.name} UI Preview`, 'High-fidelity layout mock', project.color)}" /></div></li>
+         <li><span class="step-num">7</span><div><strong>Flowchart Preview</strong><img class="case-image" alt="${study.name} flowchart" src="${svgCard(`${study.name} Flowchart`, 'System and decision flow', '#1f2f66')}" /></div></li>`
+      : project.script.map((line, i) => `<li><span class="step-num">${i + 1}</span>${line}</li>`).join("");
     modal.style.setProperty("--modal-accent", project.color);
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
@@ -594,8 +568,8 @@ function setupProjectsModal() {
         <p>${project.tagline}</p>
       </div>
       <div class="proj-tech-row">${techHtml}</div>
-      <div class="project-card-arrow">View Architecture & Case Study →</div>`;
-    card.addEventListener("click", () => { openModal(project); const el=document.getElementById(`case-${project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`); if (el) el.scrollIntoView({behavior:"smooth", block:"start"}); });
+      <div class="project-card-arrow">View Detailed Preview →</div>`;
+    card.addEventListener("click", () => openModal(project));
     container.appendChild(card);
   });
 
@@ -735,7 +709,6 @@ renderMetrics();
 renderSkills();
 renderTimeline();
 setupProjectsModal();
-renderCaseStudies();
 setupPrompts();
 setupChatbot();
 setupScrollReveal();
